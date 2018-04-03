@@ -6,11 +6,11 @@ import java.util.*;
 import static shape_generator.utils.data.factories.constant.FactoryConstants.*;
 
 public final class RandomShapesGenerator {
-    private static final Map<ShapeName, ShapeFactory> shapeFactories;
+    public static final Map<ShapeName, ShapeFactory> SHAPE_FACTORIES;
 
     static {
-        shapeFactories = new HashMap<>();
-        shapeFactories.putAll(new HashMap<ShapeName, ShapeFactory>() {{
+        SHAPE_FACTORIES = new HashMap<>();
+        SHAPE_FACTORIES.putAll(new HashMap<ShapeName, ShapeFactory>() {{
             put(ShapeName.CIRCLE, new CircleFactory());
             put(ShapeName.RECTANGLE, new RectangleFactory());
             put(ShapeName.TRIANGLE, new TriangleFactory());
@@ -33,7 +33,7 @@ public final class RandomShapesGenerator {
         Shape[] shapes = new Shape[len];
 
         for (int i = 0; i < shapes.length; i++) {
-            shapes[i] = shapeFactories.get(sNames[random.nextInt(sNames.length)]).create();
+            shapes[i] = SHAPE_FACTORIES.get(sNames[random.nextInt(sNames.length)]).create();
         }
 
         return shapes;
